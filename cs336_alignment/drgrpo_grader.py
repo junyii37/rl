@@ -1025,19 +1025,24 @@ def r1_zero_reward_fn(response, ground_truth, fast=True):
             is_correct = False
             for gt in ground_truth:
                 is_correct |= grade(model_answer, gt, fast)
-        if is_correct:
-            return {
-                "format_reward": 1.0,
-                "answer_reward": 1.0,
-                "reward": 1.0
-            }
-        else:
-            # Formatted but wrong answer; no format reward to avoid hacking.
-            return {
-                "format_reward": 1.0,
-                "answer_reward": 0.0,
-                "reward": 0.0
-            }
+        try:
+            if is_correct:
+                return {
+                    "format_reward": 1.0,
+                    "answer_reward": 1.0,
+                    "reward": 1.0
+                }
+            else:
+                # Formatted but wrong answer; no format reward to avoid hacking.
+                return {
+                    "format_reward": 1.0,
+                    "answer_reward": 0.0,
+                    "reward": 0.0
+                }
+        except Exception as e:
+            print(f"[Reward Error] ground truth: {ground_truth}")
+            print(f"[Reward Error] response: {response}")
+            print(f"[Reward Error] Exception: {repr(e)}")
     else:
         # Unformatted.
         return {

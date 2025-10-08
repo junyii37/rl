@@ -210,7 +210,8 @@ def output_strs():
 
 @pytest.fixture
 def model_id():
-    return "/data/a5-alignment/models/Qwen2.5-Math-1.5B"
+    # return "/data/a5-alignment/models/Qwen2.5-Math-1.5B"
+    return "/home/junyi/.cache/huggingface/hub/models--Qwen--Qwen2.5-Math-1.5B/snapshots/4a83ca6e4526a4f2da3aa259ec36c259f66b2ab2"
 
 
 @pytest.fixture

@@ -1,4 +1,5 @@
 import torch
+import pytest
 
 from .adapters import (
     run_compute_entropy as compute_entropy,
@@ -15,6 +16,12 @@ def test_tokenize_prompt_and_output(numpy_snapshot, prompt_strs, output_strs, to
         tokenizer=tokenizer,
     )
     numpy_snapshot.assert_match(output)
+
+#%% 测试
+if __name__ == "__main__":
+    pytest.main(["-k", "test_tokenize_prompt_and_output"])
+
+#%%
 
 def test_compute_entropy(numpy_snapshot, logits):
     output = compute_entropy(logits)
